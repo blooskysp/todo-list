@@ -1,0 +1,27 @@
+.addForm {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px
+}
+
+input {
+  width: 80%;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.addBtn {
+  width: 30px;
+  font-size: 30px;
+  line-height: 30px;
+  border-radius: 100%;
+  border: 1px solid #007b00;
+  background: #00e700;
+  color: #003f00;
+}
+
+.error {
+  color: #ff4545;
+}

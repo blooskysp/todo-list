@@ -1,0 +1,9 @@
+.actions {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+}
