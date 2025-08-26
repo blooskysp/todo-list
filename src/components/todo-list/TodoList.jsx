@@ -40,7 +40,7 @@ const TodoList = () => {
       <Add />
       <Filters inputValue={inputValue} setInputValue={setInputValue} />
       {error && <span className="error">{error}</span>}
-      {loading && !error ? 'Загрузка...' : (
+      {loading ? 'Загрузка...' : (
           <div className={styles.todoList}>
             {sortedTodos.map(({ id, name }) => (
               <Todo key={id} name={name} id={id} />

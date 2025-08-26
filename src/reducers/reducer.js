@@ -13,8 +13,7 @@ export const reducer = (state = initialState, actions) => {
     case 'SUCCESS_LOAD': {
       return {
         ...state,
-        todoList: payload,
-        loading: false
+        todoList: payload
       }
     }
     case 'TOGGLE_SORT': {
@@ -42,6 +41,12 @@ export const reducer = (state = initialState, actions) => {
       return {
         ...state,
         error: payload
+      }
+    }
+    case 'SET_LOADING': {
+      return {
+        ...state,
+        loading: payload
       }
     }
     default:
