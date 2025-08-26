@@ -2,7 +2,7 @@ import styles from "./TodoActions.module.css";
 import pencil from "../../../../assets/pencil.svg";
 import trash from "../../../../assets/trash.svg";
 import {useDispatch} from "react-redux";
-import {removeTodo} from "../../../../actions/index.js";
+import {remove} from "../../../../actions/index.js";
 import {useState} from 'react';
 
 const TodoActions = ({ id, name, toggleRenaming }) => {
@@ -10,7 +10,7 @@ const TodoActions = ({ id, name, toggleRenaming }) => {
   const [deletingStatus, setDeletingStatus] = useState(false);
 
   const onRemoveTodo = () => {
-    dispatch(removeTodo(id));
+    dispatch(remove(id));
     setDeletingStatus(true);
   }
 

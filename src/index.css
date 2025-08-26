@@ -25,3 +25,9 @@ button:disabled {
   left: 50%;
   transform: translate(-50%, 0);
 }
+
+.error {
+  color: #ff4545;
+  display: block;
+  margin: 5px 0;
+}

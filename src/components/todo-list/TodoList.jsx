@@ -6,7 +6,7 @@ import {
   selectSort,
   selectTodos,
   selectLoading,
-  selectRefresher
+  selectRefresher, selectError
 } from "../../selectors/index.js";
 import {fetchTodoList} from "../../actions/fetch-todo-list.js";
 import Filters from "../filters/Filters.jsx";
@@ -20,6 +20,8 @@ const TodoList = () => {
   const sort = useSelector(selectSort);
   const refresher = useSelector(selectRefresher);
   const todoList = useSelector(selectTodos);
+  const error = useSelector(selectError);
+
   const todoListCopy = todoList.filter((text) => (
     text.name.toLowerCase().includes(inputValue.toLowerCase())
   ));
@@ -37,7 +39,8 @@ const TodoList = () => {
     <>
       <Add />
       <Filters inputValue={inputValue} setInputValue={setInputValue} />
-      {loading ? 'Загрузка...' : (
+      {error && <span className="error">{error}</span>}
+      {loading && !error ? 'Загрузка...' : (
           <div className={styles.todoList}>
             {sortedTodos.map(({ id, name }) => (
               <Todo key={id} name={name} id={id} />

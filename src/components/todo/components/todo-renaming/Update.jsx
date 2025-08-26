@@ -1,30 +1,30 @@
-import styles from "./TodoRenaming.module.css";
+import styles from "./Update.module.css";
 import close from '../../../../assets/close.svg';
 import check from '../../../../assets/check.svg';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectTodos} from "../../../../selectors/index.js";
-import {renameTodo} from "../../../../actions/index.js";
+import {selectError, selectTodos} from "../../../../selectors/index.js";
+import {setError, update} from "../../../../actions/index.js";
 
-const TodoRenaming = ({ name, id, toggleRenaming }) => {
+const Update = ({ name, id, toggleRenaming }) => {
   const dispatch = useDispatch();
   const todoList = useSelector(selectTodos);
-  const [error, setError] = useState(false)
+  const error = useSelector(selectError);
   const [inputValue, setInputValue] = useState(name);
 
   const onRenameTodo = () => {
-    setError(false);
+    dispatch(setError(null));
 
     if (todoList.find(({ name }) => name.toLowerCase() === inputValue.toLowerCase())) {
-      setError(true);
+      dispatch(setError('Такое дело уже существует'));
       return;
     };
 
     if (inputValue) {
-      dispatch(renameTodo(id, inputValue));
+      dispatch(update(id, inputValue));
       toggleRenaming();
     } else {
-      setError(true);
+      dispatch(setError('Поле не заполнено'))
       return;
     }
   }
@@ -36,7 +36,6 @@ const TodoRenaming = ({ name, id, toggleRenaming }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         maxLength="32"
-        className={error && styles.inputError}
       />
       <div className={styles.actions}>
         <button onClick={onRenameTodo}>
@@ -56,4 +55,4 @@ const TodoRenaming = ({ name, id, toggleRenaming }) => {
   );
 };
 
-export default TodoRenaming;
+export default Update;

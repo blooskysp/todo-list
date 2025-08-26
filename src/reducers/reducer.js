@@ -1,12 +1,12 @@
 const initialState = {
   todoList: [],
-  loading: true,
   sort: false,
   refresher: false,
-  error: null
+  error: null,
+  loading: true
 }
 
-export const todoList = (state = initialState, actions) => {
+export const reducer = (state = initialState, actions) => {
   const { type, payload } = actions;
 
   switch (type) {
@@ -25,9 +25,10 @@ export const todoList = (state = initialState, actions) => {
         sort: !sortCopy
       }
     }
-    case 'REMOVE_TODO': {
+    case 'REMOVE': {
       return {
-        ...state
+        ...state,
+        todoList: state.todoList.filter(({ id }) => id !== payload)
       }
     }
     case 'REFRESH_DATA': {

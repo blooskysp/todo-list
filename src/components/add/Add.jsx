@@ -1,29 +1,29 @@
 import styles from './Add.module.css';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addTodo} from "../../actions/index.js";
+import {add, setError} from "../../actions/index.js";
 import {selectTodos} from "../../selectors/index.js";
 
 const Add = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
-  const [error, setError] = useState(null);
   const todoList = useSelector(selectTodos);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setError(null)
+
+    dispatch(setError(null));
 
     if (todoList.find(({ name }) => name.toLowerCase() === inputValue.toLowerCase())) {
-      setError('У вас уже есть такое дело');
+      dispatch(setError('Такое дело уже существует'));
       return;
-    }
+    };
 
-    if (inputValue) {
-      dispatch(addTodo(inputValue));
-      setInputValue('');
+    if (!inputValue) {
+      dispatch(setError('Поле не заполнено'))
+      return;
     } else {
-      setError('Поле не заполнено');
+      dispatch(add(inputValue));
     }
   }
 
@@ -44,7 +44,6 @@ const Add = () => {
           +
         </button>
       </form>
-      {error && <span className={styles.error}>{error}</span>}
     </div>
   );
 };

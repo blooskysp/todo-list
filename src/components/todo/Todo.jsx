@@ -1,7 +1,7 @@
 import styles from './Todo.module.css';
 import TodoActions from "./components/todo-actions/TodoActions.jsx";
 import {useState} from "react";
-import TodoRenaming from "./components/todo-renaming/TodoRenaming.jsx";
+import Update from "./components/todo-renaming/Update.jsx";
 
 const Todo = ({ name, id }) => {
   const [renaming, setRenaming] = useState(false);
@@ -11,7 +11,7 @@ const Todo = ({ name, id }) => {
   return (
     <div className={styles.todo}>
       {renaming ? (
-        <TodoRenaming
+        <Update
           id={id}
           name={name}
           toggleRenaming={toggleRenaming}

@@ -1,14 +1,14 @@
 import styles from './Filters.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {selectSort} from "../../selectors/index.js";
-import {sortTodoList} from "../../actions/index.js";
+import {sort} from "../../actions/index.js";
 
 const Filters = ({ inputValue, setInputValue }) => {
   const dispatch = useDispatch();
-  const sort = useSelector(selectSort);
+  const isSorted = useSelector(selectSort);
 
   const toggleSort = () => {
-    dispatch(sortTodoList())
+    dispatch(sort())
   }
 
   return (
@@ -26,7 +26,7 @@ const Filters = ({ inputValue, setInputValue }) => {
           onClick={toggleSort}
           className={styles.sortButton}
         >
-          Сортировка {sort ? 'вкл.' : 'выкл.'}
+          Сортировка {isSorted ? 'вкл.' : 'выкл.'}
         </button>
       </div>
     </div>
