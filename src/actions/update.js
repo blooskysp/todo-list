@@ -10,7 +10,8 @@ export const update = (id, newName) => {
       .then((rawResponse) => rawResponse.json())
       .then((res) => {
         console.log(res);
-        dispatch({ type: 'REFRESH_DATA' });
+        dispatch({ type: 'UPDATE', payload: res });
+        dispatch({ type: 'SET_ERROR', payload: null });
       })
       .catch(() => dispatch({ type: 'SET_ERROR', payload: 'Не удалось обновить дело' }))
   }

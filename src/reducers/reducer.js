@@ -30,11 +30,18 @@ export const reducer = (state = initialState, actions) => {
         todoList: state.todoList.filter(({ id }) => id !== payload)
       }
     }
-    case 'REFRESH_DATA': {
-      const refresherCopy = state.refresher;
+    case 'ADD': {
       return {
         ...state,
-        refresher: !refresherCopy
+        todoList: [payload, ...state.todoList]
+      }
+    }
+    case 'UPDATE': {
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) =>
+          todo.id === payload.id ? {...todo, name: payload.name} : todo
+        )
       }
     }
     case 'SET_ERROR': {

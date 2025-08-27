@@ -10,7 +10,8 @@ export const add = (name) => {
       .then((rawResponse) => rawResponse.json())
       .then((res) => {
         console.log(res);
-        dispatch({ type: 'REFRESH_DATA' });
+        dispatch({ type: 'ADD', payload: res });
+        dispatch({ type: 'SET_ERROR', payload: null });
       })
       .catch(() => dispatch({ type: 'SET_ERROR', payload: 'Не удалось добавить дело' }))
   }
